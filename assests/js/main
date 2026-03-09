@@ -1,0 +1,135 @@
+const canvasOOP = document.getElementById("canvasOOP");
+const canvasRandom = document.getElementById("canvasRandom");
+const canvasMultiple = document.getElementById("canvasMultiple");
+
+const ctx = canvasOOP.getContext("2d");
+const ctxRandom = canvasRandom.getContext("2d");
+const ctxMultiple = canvasMultiple.getContext("2d");
+
+canvasOOP.height = 200;
+canvasOOP.width = 300;
+
+canvasRandom.height = 200;
+canvasRandom.width = 300;
+
+canvasMultiple.height = 200;
+canvasMultiple.width = 300;
+
+canvasOOP.style.background = "#ff8";
+canvasRandom.style.background = "#e6f7f6";
+canvasMultiple.style.background = "#fcfb97";
+
+class Circle {
+  constructor(x, y, radius, color, text, backcolor, textcolor) {
+    this.posX = x;
+    this.posY = y;
+    this.radius = radius;
+    this.color = color;
+    this.text = text;
+    this.backcolor = backcolor;
+    this.textcolor = textcolor;
+  }
+
+  draw(context) {
+    context.beginPath();
+    context.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2);
+    context.fillStyle = this.backcolor;
+    context.fill();
+
+    context.lineWidth = 4;
+    context.strokeStyle = this.color;
+    context.stroke();
+
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.font = "bold 18px cursive";
+    context.fillStyle = this.textcolor;
+    context.fillText(this.text, this.posX, this.posY);
+
+    context.closePath();
+  }
+}
+
+/* ============================= */
+/* 1️⃣ CÍRCULO CENTRADO (OOP) */
+/* ============================= */
+
+let miCirculo = new Circle(
+  canvasOOP.width / 2,
+  canvasOOP.height / 2,
+  50,
+  "rgb(27,44,43)",
+  "Tec",
+  "rgb(245,66,221)",
+  "white"
+);
+
+miCirculo.draw(ctx);
+
+/* ============================= */
+/* 2️⃣ CÍRCULO RANDOM SIN SALIR */
+/* ============================= */
+
+let randomRadius = Math.floor(Math.random() * 50 + 30);
+
+let randomX =
+  Math.random() * (canvasRandom.width - 2 * randomRadius) + randomRadius;
+
+let randomY =
+  Math.random() * (canvasRandom.height - 2 * randomRadius) + randomRadius;
+
+let miCirculoRandom = new Circle(
+  randomX,
+  randomY,
+  randomRadius,
+  "green",
+  "Tec",
+  "rgb(83,186,52)",
+  "white"
+);
+
+miCirculoRandom.draw(ctxRandom);
+
+/* ===================================== */
+/* 3️⃣ MÚLTIPLES CÍRCULOS SIN SUPERPONER */
+/* ===================================== */
+
+/* let arrayCircle = [];
+
+function isOverlapping(x, y, radius, circles) {
+  for (let circle of circles) {
+    let dx = x - circle.posX;
+    let dy = y - circle.posY;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < radius + circle.radius) {
+      return true; // se están tocando o superponiendo
+    }
+  }
+  return false;
+}
+
+for (let i = 0; i < 5; i++) {
+  let radius = Math.floor(Math.random() * 20 + 20);
+  let x, y;
+  let attempts = 0;
+
+  do {
+    x = Math.random() * (canvasMultiple.width - 2 * radius) + radius;
+    y = Math.random() * (canvasMultiple.height - 2 * radius) + radius;
+    attempts++;
+  } while (isOverlapping(x, y, radius, arrayCircle) && attempts < 100);
+
+  let circle = new Circle(
+    x,
+    y,
+    radius,
+    "#9e500d",
+    i + 1,
+    "#f29a4e",
+    "white"
+  );
+
+  arrayCircle.push(circle);
+  circle.draw(ctxMultiple);
+} */
