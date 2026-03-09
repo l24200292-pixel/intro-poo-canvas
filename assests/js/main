@@ -93,7 +93,7 @@ miCirculoRandom.draw(ctxRandom);
 /* ===================================== */
 /* 3️⃣ MÚLTIPLES CÍRCULOS SIN SUPERPONER */
 /* ===================================== */
-
+/*
 let arrayCircle = [];
 
 function isOverlapping(x, y, radius, circles) {
@@ -132,4 +132,4 @@ for (let i = 0; i < 5; i++) {
 
   arrayCircle.push(circle);
   circle.draw(ctxMultiple);
-}
+}*/
